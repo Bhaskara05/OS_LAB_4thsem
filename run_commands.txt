@@ -1,0 +1,350 @@
+Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 6.6.87.2-microsoft-standard-WSL2 x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Tue Sep  9 09:47:35 IST 2025
+
+  System load:  0.0                 Processes:             10
+  Usage of /:   0.2% of 1006.85GB   Users logged in:       0
+  Memory usage: 4%                  IPv4 address for eth0: 172.20.114.23
+  Swap usage:   0%
+
+
+This message is shown once a day. To disable it please create the
+/home/bhaskara/.hushlogin file.
+bhaskara@LAPTOP-TDT91GNM:~$ cd /mnt/d
+bhaskara@LAPTOP-TDT91GNM:/mnt/d$ cd 4th_SEM_LAB
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/4th_SEM_LAB$ ls
+ADA  OS
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/4th_SEM_LAB$ cd OS
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/4th_SEM_LAB/OS$ ls
+11a.c  12a.c  a.out  a.sh
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/4th_SEM_LAB/OS$ chmod 777 a.sh
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/4th_SEM_LAB/OS$ ./a.sh
+Enter first number:
+^C
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/4th_SEM_LAB/OS$ cc abc.c
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/4th_SEM_LAB/OS$ ./a.out
+
+Enter the number of processes:
+3
+
+Enter the arrival time, burst time and priority of the process:
+AT BT P
+4 5 7
+7 8 9
+45 6
+1 2 3
+
+Gantt Chart:
+
+| Idle till 4| P1 (5) 9| P2 (8) 17| Idle till 28| P3 (6) 51|
+
+PID     AT      BT      CT      TAT     WT      P
+1       4       5       9       5       0       7
+2       7       8       17      10      2       9
+3       45      6       51      6       0       1
+
+Average TAT = 7.00
+Average WT = 0.67
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/4th_SEM_LAB/OS$ ls
+11a.c  12a.c  a.out  a.sh  abc.c
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/4th_SEM_LAB/OS$ cd ..
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/4th_SEM_LAB$ cd ..
+bhaskara@LAPTOP-TDT91GNM:/mnt/d$ cd os
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ls
+10a.c  11a.c  12a.sh  1a.sh  2a.sh  3a.sh  4a.sh  5a.c  6a.c  7a.c  8a.c  9a.sh
+10b.c  11b.c  12b.c   1b.c   2b.c   3b.c   4b.c   5b.c  6b.c  7b.c  8b.c  9b.c
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 10a.c
+10a.c:31:5: error: redefinition of ‘main’
+   31 | int main(int argc, char *argv[])
+      |     ^~~~
+10a.c:4:5: note: previous definition of ‘main’ with type ‘int(int,  char **)’
+    4 | int main(int argc, char *argv[])
+      |     ^~~~
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ gcc 10a.c -o 10a -lm
+10a.c:31:5: error: redefinition of ‘main’
+   31 | int main(int argc, char *argv[])
+      |     ^~~~
+10a.c:4:5: note: previous definition of ‘main’ with type ‘int(int,  char **)’
+    4 | int main(int argc, char *argv[])
+      |     ^~~~
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 10parent.c
+cc1: fatal error: 10parent.c: No such file or directory
+compilation terminated.
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ 10bparent.c
+10bparent.c: command not found
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 10bparent.c
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 10bchild.c
+/usr/bin/ld: /tmp/cc9Q2Dkg.o: in function `isPrime':
+10bchild.c:(.text+0x5f): undefined reference to `sqrt'
+collect2: error: ld returned 1 exit status
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ gcc 10bparent.c -o parent -lrt
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ gcc 10bchild.c -o child -lrt -lm
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./parent 10 50
+[CHILD] Generating primes from 10 to 50...
+[CHILD] Done. Primes written to shared memory.
+
+[PARENT] Child complete!
+[PARENT] Prime numbers from 10 to 50:
+11 13 17 19 23 29 31 37 41 43 47
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 10a1.c
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cat 10a2.c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[])
+{
+    FILE *fp1, *fp2;
+    char ch;
+
+    if (argc < 3) {
+        printf("Insufficient number of arguments\n");
+        printf("Usage: %s <target_file> <source_file>\n", argv[0]);
+        exit(1);
+    }
+
+    fp1 = fopen(argv[1], "a");  // target file (append mode)
+    if (fp1 == NULL) {
+        printf("Error opening target file %s\n", argv[1]);
+        exit(1);
+    }
+
+    fp2 = fopen(argv[2], "r");  // source file (read mode)
+    if (fp2 == NULL) {
+        printf("Error opening source file %s\n", argv[2]);
+        fclose(fp1);
+        exit(1);
+    }
+
+    while ((ch = fgetc(fp2)) != EOF)
+        fputc(ch, fp1);
+
+    fclose(fp1);
+    fclose(fp2);
+
+    printf("Contents of %s appended to %s successfully.\n", argv[2], argv[1]);
+
+    return 0;
+}bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 10a1.c
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./a.out
+File not entered
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cat 10bparent.c
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]) {
+    const int SIZE = 4096;
+    pid_t pid;
+    int shm_fd;
+    void *ptr;
+
+    if (argc < 3) {
+        printf("Error: Minimum of two arguments must be passed!\n");
+        exit(1);
+    }
+
+    int start, end;
+    sscanf(argv[1], "%d", &start);
+    sscanf(argv[2], "%d", &end);
+
+    if (start < 2) {
+        printf("Error input: %d\n", start);
+        return 0;
+    }
+
+    pid = fork();
+    if (pid == 0) {
+        // child process
+        execlp("./child", "child", argv[1], argv[2], NULL);
+        perror("execlp failed");
+        exit(1);
+    } else if (pid > 0) {
+        // parent process
+        wait(NULL);
+        printf("\n[PARENT] Child complete!\n");
+
+        shm_fd = shm_open("VSS", O_RDONLY, 0666);
+        ptr = mmap(0, SIZE, PROT_READ, MAP_SHARED, shm_fd, 0);
+
+        printf("[PARENT] Prime numbers from %d to %d:\n", start, end);
+        printf("%s\n", (char *)ptr);
+
+        shm_unlink("VSS"); // cleanup
+    } else {
+        perror("fork failed");
+        exit(1);
+    }
+
+    return 0;
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 11a.c -pthread
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./a.out
+Usage: ./a.out <number>
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ gcc 11a.c -pthread
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./a.out
+Usage: ./a.out <number>
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./a.out 5
+Inside mul thread
+Mul thread completed
+Inside sum thread
+Sum thread completed
+Inside main thread
+Sum = 15
+Factorial = 120
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 11a.c -pthread
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./a.out 10
+Inside sum thread
+Sum thread completed
+Inside mul thread
+Mul thread completed
+Inside main thread
+Sum = 55
+Factorial = 3628800
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 11b.c -pthread
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./a.out
+Producer 2: Insert Item 38 at 0
+Producer 1: Insert Item 34 at 1
+Producer 2: Insert Item 51 at 2
+Consumer 1: Remove Item 38 from 0
+Consumer 1: Remove Item 34 from 1
+Consumer 1: Remove Item 51 from 2
+Producer 3: Insert Item 70 at 0
+Producer 2: Insert Item 58 at 1
+Producer 1: Insert Item 86 at 2
+Consumer 2: Remove Item 70 from 0
+Consumer 2: Remove Item 58 from 1
+Producer 3: Insert Item 40 at 0
+Producer 3: Insert Item 3 at 1
+Consumer 2: Remove Item 86 from 2
+Producer 1: Insert Item 64 at 2
+Consumer 3: Remove Item 40 from 0
+Consumer 3: Remove Item 3 from 1
+Consumer 3: Remove Item 64 from 2
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 12b.c
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./a.out
+Reader 1: read cnt as 1
+Reader 2: read cnt as 1
+Reader 3: read cnt as 1
+Writer 3 modified cnt to 2
+Writer 1 modified cnt to 4
+Writer 2 modified cnt to 8
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 9aparent.c
+cc1: fatal error: 9aparent.c: No such file or directory
+compilation terminated.
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 9bparent.c -lrt
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 9bchild.c -lrt
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./a.out
+shmget: No such file or directory
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc pbparent.c
+cc1: fatal error: pbparent.c: No such file or directory
+compilation terminated.
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 9bparent.c
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 9bchild.c -o child
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./a.out
+[PARENT] Created shared memory with key = 1234, id = 0
+[PARENT] Enter n: 5
+[CHILD] Attached to shared memory with key = 1234, id = 0
+[CHILD] Finished generating first 5 odd numbers
+[PARENT] Child finished executing.
+[PARENT] The first 5 odd numbers are:
+1 3 5 7 9
+[PARENT] Shared Memory Deleted
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 9bparent.c
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 9bchild.c -o child
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./a.out
+[PARENT] Created shared memory with key = 1234, id = 1
+[PARENT] Enter n: 10
+[CHILD] Attached to shared memory with key = 1234, id = 1
+[CHILD] Finished generating first 10 odd numbers
+[PARENT] Child finished executing.
+[PARENT] The first 10 odd numbers are:
+1 3 5 7 9 11 13 15 17 19
+[PARENT] Shared Memory Deleted
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 8bparent.c
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 8bchild.c -o child
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./a.out
+Error: not passing N in command line
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./a.out 5
+CHILD:
+0 1 1 2 3
+
+PARENT: child completed
+Parent printing:
+0 1 1 2 3
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 7bparent.c
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 7bchild.c -o cgild
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 7bchild.c -o child
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./a.out 5
+CHILD:
+0 1 1 2 3
+
+PARENT: child completed
+Parent printing:
+0 1 1 2 3
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 7bparent.c -lrt
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 7bchild.c -o child
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./a.out 10
+CHILD:
+0 1 1 2 3 5 8 13 21 34
+
+PARENT: child completed
+Parent printing:
+0 1 1 2 3 5 8 13 21 34
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 7a.c
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./a.out
+Enter file name: 7a.c
+Enter pattern to be searched: printf
+
+Lines containing "printf":
+    printf("Enter file name: ");
+    printf("Enter pattern to be searched: ");
+    printf("\nLines containing \"%s\":\n", pat);
+            printf("%s", temp);
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 7a.c
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./a.out
+Enter file name: 7a.c
+Enter pattern to be searched: name
+
+Lines containing "name":
+    printf("Enter file name: ");
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 8a.c
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./a.out os
+Cannot open directory: os
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 8a.c
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./a.out abc
+Contents of directory abc:
+.
+..
+a.c
+b.txt
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ mkdir file
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ gedit a.c
+Command 'gedit' not found, but can be installed with:
+sudo apt install gedit
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ cc 8a.c
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./a.out file
+Contents of directory file:
+.
+..
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ./a.out abc
+Contents of directory abc:
+.
+..
+a.c
+b.txt
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$ ls
+10a1.c       11a.c   1a.sh  3a.sh  5a.c  7a.c        8bchild.c   9bparent.c  child
+10a2.c       11b.c   1b.c   3b.c   5b.c  7bchild.c   8bparent.c  a.out       file
+10bchild.c   12a.sh  2a.sh  4a.sh  6a.c  7bparent.c  9a.sh       abc         parent
+10bparent.c  12b.c   2b.c   4b.c   6b.c  8a.c        9bchild.c   cgild
+bhaskara@LAPTOP-TDT91GNM:/mnt/d/os$
